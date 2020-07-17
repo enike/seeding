@@ -2,6 +2,7 @@ package com.enike.admin.entity;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.enike.admin.AO.RegisterAO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -56,4 +57,10 @@ public class User implements Serializable {
      * 电话
      */
     private String phone;
+    public void setFromAO(RegisterAO ao){
+        this.username = ao.getUsername();
+        this.password = ao.getPassword();
+        this.role = ao.getRole();
+        this.email = ao.getEmail();
+    }
 }

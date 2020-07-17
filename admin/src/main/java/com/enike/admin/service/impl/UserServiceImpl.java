@@ -1,6 +1,7 @@
 package com.enike.admin.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.enike.admin.AO.RegisterAO;
 import com.enike.admin.config.exception.SeedException;
 import com.enike.admin.config.security.JwtAuthenticatioToken;
 import com.enike.admin.config.security.JwtTokenUtils;
@@ -38,7 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean register(User user) {
+    public boolean register(RegisterAO user) {
         if(user.getUsername() != null && user.getPassword()!=null && user.getPhone()!=null){
             EntityWrapper<User> ew = new EntityWrapper<>();
             ew.eq("username",user.getUsername())
