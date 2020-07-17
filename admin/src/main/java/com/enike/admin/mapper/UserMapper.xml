@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enike.admin.dao.UserMapper">
+    <select id="selectByName" resultType="com.enike.admin.entity.User">
+        SELECT * FROM user u WHERE username = #{username}
+    </select>
+    <select id="getPermissionsByName" resultType="java.lang.String">
+        SELECT r.authority FROM `user` u left JOIN role_authority r on u.role_id = r.role_id
+        where u.username = #{username}
+    </select>
+</mapper>

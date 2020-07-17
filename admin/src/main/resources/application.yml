@@ -1,0 +1,26 @@
+server:
+  port: 6666
+swagger:
+  enable: true
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/seeding?characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: myroot2020
+    driver-class-name: com.mysql.jdbc.Driver
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+##  mapper-locations: classpath:/com/enike/admin/mapper/*.xml,classpath:/com/enike/admin/mapper/*/*.xml,classpath*:/com/**/admin/mapper/*.xml
+##  type-aliases-package: com.enike.admin.entity
+#  mapper-locations: classpath:/com/enike/admin/mapper/*.xml,classpath:/com/enike/admin/mapper/*/*.xml
+#  typeAliasesPackage: com.enike.admin.entity
+
+mybatis-plus:
+  #  如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  #  如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:/com/enike/admin/mapper/*.xml,classpath:/com/enike/admin/mapper/*/*.xml
+  #  实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.enike.admin.entity
