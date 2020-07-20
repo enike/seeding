@@ -3,7 +3,6 @@ package com.enike.admin.controller;
 
 import com.enike.admin.AO.RegisterAO;
 import com.enike.admin.config.security.JwtAuthenticatioToken;
-import com.enike.admin.entity.User;
 import com.enike.admin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,7 +41,7 @@ public class UserController extends BaseController{
 
         String msg =  userService.login(username,password);
         if(msg.equals("SUCCESS")){
-            return userService.getToken(request, username,password,authenticationManager);
+            return userService.authToken(request, username,password,authenticationManager);
         }
         return null;
     }

@@ -39,23 +39,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean register(RegisterAO user) {
-        if(user.getUsername() != null && user.getPassword()!=null && user.getPhone()!=null){
+    public boolean register(RegisterAO ao) {
+        if(ao.getUsername() != null && ao.getPassword()!=null && ao.getPhone()!=null){
             EntityWrapper<User> ew = new EntityWrapper<>();
-            ew.eq("username",user.getUsername())
-                    .eq("phone",user.getPhone());
+            ew.eq("username",ao.getUsername())
+                    .eq("phone",ao.getPhone());
             if(userMapper.selectList(ew).size()>0){
                 throw new SeedException("用户信息已被注册"+ErrorMessage.INPUT_VALUE_INVALID);
             }
             String salt = PasswordManager.getSalt();
+            User user = new User();
+            user.setFromAO(ao);
             user.setSalt(salt);
-            String password = new PasswordManager(salt).encode(user.getPassword());
-            user.setPassword(password);
-            userMapper.insert(user);
+            String password = new PasswordManager(salt).encode(ao.getPassword());
+            ao.setPassword(password);
+            return userMapper.insert(user) == 1 ? true:false;
         }else{
             throw new SeedException(ErrorMessage.INPUT_VALUE_INVALID);
         }
-        return true;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public JwtAuthenticatioToken getToken(HttpServletRequest request, String username, String password, AuthenticationManager authenticationManager) {
+    public JwtAuthenticatioToken authToken(HttpServletRequest request, String username, String password, AuthenticationManager authenticationManager) {
         JwtAuthenticatioToken token = new JwtAuthenticatioToken(username, password);
 
         token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

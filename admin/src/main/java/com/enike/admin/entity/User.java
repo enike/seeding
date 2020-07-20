@@ -57,6 +57,7 @@ public class User implements Serializable {
      * 电话
      */
     private String phone;
+
     public void setFromAO(RegisterAO ao){
         this.username = ao.getUsername();
         this.password = ao.getPassword();

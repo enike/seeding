@@ -23,7 +23,7 @@ public interface UserService extends IService<User> {
 
     String login(String username, String password);
 
-    JwtAuthenticatioToken getToken(HttpServletRequest request, String username, String password, AuthenticationManager authenticationManager);
+    JwtAuthenticatioToken authToken(HttpServletRequest request, String username, String password, AuthenticationManager authenticationManager);
 
     Set<String> getPermissionsByName(String username);
 }
