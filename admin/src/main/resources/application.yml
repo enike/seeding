@@ -22,18 +22,18 @@ spring:
 #      - 127.0.0.1:6381
 #      - 127.0.0.1:6388
 #   此处不适用jedis线程池，因为是非线程安全。如果出现多线程抢夺资源，redis串行操作数据异常。另外jedis连接数量过多，资源消耗阶梯式增大，连接成本就较高。
-  lettuce:
-    pool:
-      #      连接池最大连接数（使用负值表示没有限制）
-      max-active: 8
-      #        连接池最大阻塞等待时间（使用负值表示没有限制）
-      max-wait: -1ms
-      #        连接池中的最大空闲连接
-      max-idle: 8
-      #        连接池中的最小空闲连接
-      min-idle: 0
-  #    连接超时时间（毫秒）
-  timeout: 30000ms
+#  lettuce:
+#    pool:
+#      #      连接池最大连接数（使用负值表示没有限制）
+#      max-active: 8
+#      #        连接池最大阻塞等待时间（使用负值表示没有限制）
+#      max-wait: -1ms
+#      #        连接池中的最大空闲连接
+#      max-idle: 8
+#      #        连接池中的最小空闲连接
+#      min-idle: 0
+#  #    连接超时时间（毫秒）
+#  timeout: 30000ms
   datasource:
     #    配置这个属性的意义在于，如果存在多个数据源，监控的时候可以通过名字来区分开来。 如果没有配置，将会生成一个名字，格式是："DataSource-" + System.identityHashCode(this)
     name: druidDataSource
@@ -87,3 +87,5 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:/com/enike/admin/mapper/*.xml,classpath:/com/enike/admin/mapper/*/*.xml
   typeAliasesPackage: com.enike.admin.entity
+  configuration:
+    map-underscore-to-camel-case: true

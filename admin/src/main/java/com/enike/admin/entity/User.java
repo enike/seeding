@@ -44,7 +44,7 @@ public class User implements Serializable {
     /**
      * 角色
      */
-    private String role;
+    private String roleId;
     /**
      * 真实姓名
      */
@@ -61,7 +61,7 @@ public class User implements Serializable {
     public void setFromAO(RegisterAO ao){
         this.username = ao.getUsername();
         this.password = ao.getPassword();
-        this.role = ao.getRole();
+        this.roleId = ao.getRole();
         this.email = ao.getEmail();
     }
 }
